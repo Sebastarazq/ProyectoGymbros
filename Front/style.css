@@ -3,25 +3,29 @@
     font-family: 'Poppins', sans serif;
 }
 body{
-    background-image: url("images/1.jpg");
+    background-image: url("images/1.png");
     background-repeat: no-repeat;
-    background-color: black;
-    background-size: 960px 1080px ;
-    background-attachment: fixed;
+    background-color: #1B1B1B;
+    /*background-attachment: fixed;*/
+    background-position-x: center;
+    background-position-y: center;
+    /*background-size: 23%;*/
+    
     
 }
 .box{
-    display: flex;
-    justify-content: right;
-    width: 85%;
+    display:flex;
+    justify-content: center;
     align-items: center;
     min-height: 90vh;
+    
 }
 .container{
     width: 350px;
     display: flex;
     flex-direction: column;
     padding: 0 15px 0 15px;
+    
     
 }
 span{
@@ -47,8 +51,9 @@ header{
     color: #FF7A00;
     font-size: 15px;
     padding: 0 0 0 45px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(0, 0, 0, 0.7);
     outline: none;
+    
 }
 i{
     position: relative;
@@ -79,12 +84,17 @@ i{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    color: #fff;
-    font-size: small;
-    margin-top: 10px;
+    color: #0099FF;
+    font-size: medium;
+    font-style: bold;
+    margin-top: 50px;
 }
 .one{
     display: flex;
+}
+.two{
+    display: flex;
+    color: #0099FF;
 }
 label a{
     text-decoration: none;
