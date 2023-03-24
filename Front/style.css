@@ -2,23 +2,18 @@
 *{
     font-family: 'Poppins', sans serif;
 }
-body{
+.logyreg{
     background-image: url("images/1.png");
     background-repeat: no-repeat;
-<<<<<<< HEAD
     background-color: #1B1B1B;
-    /*background-attachment: fixed;*/
+    background-attachment: fixed;
     background-position-x: center;
     background-position-y: center;
-    /*background-size: 23%;*/
-    
-    
-=======
-    background-color: black;
-    background-size: 960px 1080px ;
-    background-attachment: fixed;
-    font-family: Arial, Helvetica, sans-serif;  
->>>>>>> ae3bf6ee7cb5f00bfde539ce0364577702ebdc89
+}
+@media(max-width: 600px){
+    .logyreg{
+        background-size: 11%;
+    }
 }
 .box{
     display:flex;
@@ -112,13 +107,14 @@ label a{
 }
 .olvdcontra{
     text-align: center;
+    color: #0099FF;
 }
 .top{
     text-align: center;
 }
 
 /* Menu barra */
-body{
+.home{
     font-family: Arial, Helvetica, sans-serif;
     background: #515151;
 }
@@ -445,4 +441,40 @@ body{
     top: -150px;
     width: 231px;
     height: 43px;
+}
+
+
+
+
+@media(max-width: 768px){
+    .contenedor_productos{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+.contenedor_productos_ejemplos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+@media(max-width: 768px){
+    .contenedor_productos_ejemplos{
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+    }
+}
+.boton_productos1{
+    display: block;
+    margin: 0;
+    position: initial;
+}
+.producto{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
