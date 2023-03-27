@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
 *{
     font-family: 'Poppins', sans serif;
+    /*Login y register*/
 }
 .logyreg{
     background-image: url("images/1.png");
@@ -129,9 +130,9 @@ label a{
 }
 
 .menu li img{
-    position: relative;
+    position:absolute;
     display: flex;
-    width: 33%;
+    width: 50%;
 }
 
 .menu {
@@ -225,7 +226,7 @@ label a{
     padding: 12px 24px; 
     text-align: center; 
     text-decoration: none; 
-    display: inline-block; 
+    display:block; 
     font-size: 16px; 
     cursor: pointer;
     margin-left: 20px;
@@ -250,13 +251,13 @@ label a{
     margin-left: 0;
 }
 
-
 .img1{
     height: 334px;
     width: 273px;
     left: 50px;
-    position: relative;
+    display: relative;
 }
+
 .img2{
     height: 334px;
     width: 273px;
@@ -309,39 +310,41 @@ label a{
     height: 43px;
 }
 
-.boton_productos2{
-    position: relative;
-    background-color: #FF7A00;
-    border: none; 
-    color: white;
-    padding: 12px 24px; 
-    text-align: center; 
-    text-decoration: none; 
-    display: inline-block; 
-    font-size: 16px; 
-    cursor: pointer;
-    margin-left: 240px;
-    top: -150px;
-    width: 231px;
-    height: 43px;
+@media(max-width: 768px){
+    .contenedor_productos{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
-.boton_productos3{
-    position: relative;
-    background-color: #FF7A00;
-    border: none; 
-    color: white;
-    padding: 12px 24px; 
-    text-align: center; 
-    text-decoration: none; 
-    display: inline-block; 
-    font-size: 16px; 
-    cursor: pointer;
-    margin-left: 250px;
-    top: -150px;
-    width: 231px;
-    height: 43px;
+.contenedor_productos_ejemplos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
+@media(max-width: 768px){
+    .contenedor_productos_ejemplos{
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+    }
+}
+.boton_productos1{
+    display: block;
+    margin: 0;
+    position: initial;
+}
+.producto{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}  
+img{
+    display: flex;
+    width: 8%;
+}
+
 
 /* CITAS */
 
@@ -409,7 +412,7 @@ label a{
     padding: 12px 24px; 
     text-align: center; 
     text-decoration: none; 
-    display: inline-block; 
+    display: flex; 
     font-size: 16px; 
     cursor: pointer;
     margin-left: 70px;
@@ -417,77 +420,36 @@ label a{
     width: 231px;
     height: 43px;
 }
-
-.boton_citas2{
-    position: relative;
-    background-color: #FF7A00;
-    border: none; 
-    color: white;
-    padding: 12px 24px; 
-    text-align: center; 
-    text-decoration: none; 
-    display: inline-block; 
-    font-size: 16px; 
-    cursor: pointer;
-    margin-left: 240px;
-    top: -150px;
-    width: 231px;
-    height: 43px;
-}
-
-.boton_citas3{
-    position: relative;
-    background-color: #FF7A00;
-    border: none; 
-    color: white;
-    padding: 12px 24px; 
-    text-align: center; 
-    text-decoration: none; 
-    display: inline-block; 
-    font-size: 16px; 
-    cursor: pointer;
-    margin-left: 250px;
-    top: -150px;
-    width: 231px;
-    height: 43px;
-}
-
-
 @media(max-width: 768px){
-    .contenedor_productos{
+    .contenedor_citas{
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 }
-
-.contenedor_productos_ejemplos{
+.contenedor_citas_ejemplos{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 @media(max-width: 768px){
-    .contenedor_productos_ejemplos{
+    .contenedor_citas_ejemplos{
         flex-direction: column;
         align-content: center;
         justify-content: center;
     }
 }
-.boton_productos1{
+.boton_citas1{
     display: block;
     margin: 0;
     position: initial;
 }
-.producto{
+.citas{
     display: flex;
     flex-direction: column;
     gap: 20px;
-}  
-img{
-    display: flex;
-    width: 8%;
+    
 }
-
 /* AGENDAR CITAS */
 .bodyCitas {
     font-family:  "Inter", Arial, Helvetica, sans-serif;
