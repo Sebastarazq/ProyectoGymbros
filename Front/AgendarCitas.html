@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Formulario de citas</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="bodyCitas">
+    <h1>Agenda tu cita</h1>
+
+    <form>
+      <label for="nombre-completo">Nombre completo:</label>
+      <input type="text" id="nombre-completo" name="nombre-completo" required>
+
+      <label for="correo-electronico">Correo electrónico:</label>
+      <input type="email" id="correo-electronico" name="correo-electronico" required>
+
+      <label for="motivo-cita">Motivo de cita:</label>
+      <select id="motivo-cita" name="motivo-cita" required>
+        <option value="">--Seleccione--</option>
+        <option value="Examen médico">Examen médico</option>
+        <option value="Consulta general">Consulta general</option>
+        <option value="Tratamiento específico">Tratamiento específico</option>
+      </select>
+
+      <label for="numero-telefono">Número de teléfono:</label>
+      <input type="tel" id="numero-telefono" name="numero-telefono" required>
+
+      <label for="fecha-cita">Fecha:</label>
+      <input type="date" id="fecha-cita" name="fecha-cita" required>
+
+      <label for="hora-cita">Hora:</label>
+      <input type="time" id="hora-cita" name="hora-cita" required>
+
+      <input class="botonAgendar" type="submit" value="Agendar cita">
+    </form>
+  </body>
+</html>
