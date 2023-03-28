@@ -17,6 +17,7 @@ app.set('view engine','pug') //usar pug
 app.set('views','./views') // aca estaran los archivos
 
 // Carpeta publica
+app.use(express.static('public'))
 
 
 //Routing
