@@ -12,6 +12,10 @@ const app = express()
 //Conexion a la base de datos
 
 
+// Habilitar pug
+app.set('view engine','pug') //usar pug
+app.set('views','./views') // aca estaran los archivos
+
 // Carpeta publica
 
 
