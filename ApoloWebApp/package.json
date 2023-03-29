@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "css": "postcss public/css/tailwind.css -o public/css/app.css --watch "
   },
   "keywords": [
     "MVC",
@@ -31,6 +32,7 @@
     "sequelize": "^6.30.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.14",
     "nodemon": "^2.0.22",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
