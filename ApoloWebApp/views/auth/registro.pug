@@ -17,10 +17,13 @@ block contenido
                     input(type="hidden" name="_csrf" value =csrfToken)
                     div
                         label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="nombre") Tu nombre
-                        input#nombre.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu Nombre" type="text" name="nombre" value= usuario ? usuario.nombre : '' )
+                        input#nombre.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu Nombre" type="text" name="nombre" value= cliente ? cliente.nombre : '' )
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="apellido") Tu Apellido
+                        input#apellido.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu Apellido" type="text" name="apellido" value= cliente ? cliente.apellido : '' )
                     div
                         label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="email") Email de Registro
-                        input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu Email" type="email" name="email" value= usuario ? usuario.email : '' )
+                        input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu Email" type="email" name="email" value= cliente ? cliente.email : '' )
                     div
                         label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="password") Password
                         input#password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu Password" type="password" name="password")
