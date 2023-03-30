@@ -1,6 +1,7 @@
 import { check, validationResult } from 'express-validator'
 import bcrypt from 'bcrypt'
 import Usuario from "../models/Usuario.js"
+import { generaId } from '../helpers/tokens.js'
 
 const formularioLogin= (req,res) => {
     res.render('auth/login', {
@@ -37,6 +38,7 @@ const registrar = async (req,res) =>{
             errores: resultado.array(),
             usuario:{ 
                 nombre: req.body.nombre,
+                apellido: req.body.apellido,
                 email: req.body.email
             }
         })
@@ -72,11 +74,11 @@ const registrar = async (req,res) =>{
     })
 
     // ENVIA EMAIL DE confirmación
-    emailRegistro({
+    /* emailRegistro({
         nombre: usuario.nombre,
         email: usuario.email,
         token: usuario.token
-    })
+    }) */
 
     //Mostrar mensaje de confirmacion
 
