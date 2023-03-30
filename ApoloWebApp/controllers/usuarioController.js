@@ -2,6 +2,7 @@ import { check, validationResult } from 'express-validator'
 import bcrypt from 'bcrypt'
 import Usuario from "../models/Usuario.js"
 import { generaId } from '../helpers/tokens.js'
+import { emailRegistro } from '../helpers/emails.js'
 
 const formularioLogin= (req,res) => {
     res.render('auth/login', {
@@ -74,11 +75,12 @@ const registrar = async (req,res) =>{
     })
 
     // ENVIA EMAIL DE confirmación
-    /* emailRegistro({
+    emailRegistro({
         nombre: usuario.nombre,
+        apellido: usuario.apellido,
         email: usuario.email,
         token: usuario.token
-    }) */
+    }) 
 
     //Mostrar mensaje de confirmacion
 
@@ -86,11 +88,40 @@ const registrar = async (req,res) =>{
         pagina: 'Cuenta creada Correctamente',
         mensaje: 'Hemos Enviado un Email de confirmacion, presiona en el enlace'
     })
-} 
+}
+//Funcion que comprueba una cuenta
+const confirmar = async (req,res) =>{
+
+    const { token } = req.params;
+
+    //Verificar si el token es valido
+    const usuario = await Usuario.findOne({ where: {token}})
+
+    if (!usuario){
+        return res.render('auth/confirmar-cuenta', {
+            pagina: 'Error al confirmar tu cuenta',
+            mensaje: 'Hubo un error al confirmar tu cuenta, intenta de nuevo',
+            error: true
+        })
+    }
+
+
+    //Confirmar la cuenta
+
+    usuario.token = null;
+    usuario.confirmado= true;
+    await usuario.save();
+
+    res.render('auth/confirmar-cuenta', {
+        pagina: 'Cuenta Confirmada',
+        mensaje: 'La cuenta se confirmo Correctamente',
+    })
+}
+
 
 const formularioOlvidePassword= (req,res) => {
     res.render('auth/olvide-password', {
-        pagina: 'Recupera tu acceso a Bienes Raices',
+        pagina: 'Recupera tu acceso a Apolo',
         //csrfToken: req.csrfToken(), //opcional para csrf
     })
 }
@@ -100,5 +131,6 @@ export {
     formularioLogin,
     formularioRegistro,
     registrar,
+    confirmar,
     formularioOlvidePassword
 }
