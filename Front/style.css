@@ -197,16 +197,16 @@ label a{
 .apolo{
     text-align: left;
     color: white;
-    font-size: 80px;
-    margin-left: 20px;
+    font-size: 4rem;
+    margin-left: 2rem;
 }
 .man{
     text-align: left;
     color: white;
-    font-size: 80px;
+    font-size: 4rem;
     position: relative;
-    top: -55px;
-    margin-left: 20px;
+    top: -2.75rem;
+    margin-left: 2rem;
 
 }
 
@@ -222,18 +222,19 @@ label a{
     text-align: left;
     color: white;
     position: relative;
-    top: -100px;
-    font-size: 20px;
-    margin-left: 20px;
-    margin-right: 100px;
-    width: 379px; 
-    height: 144px; 
+    top: -5.25rem;
+    font-size: 1.6rem;
+    margin-left: 2rem;
+    margin-right: 10%;
+    width: 40%;
 }
 
 .contenedor_apolo hr{
     border: none;
     border-top: 50000px #FF7A00;
     margin: 50px 50;
+    top: -90px;
+    margin-left: 36px;
 }
 .boton_citar{
     position: relative;
@@ -297,10 +298,10 @@ label a{
 
 .text1{
     color: white;
-    font-size: 30px;
+    font-size: 40px;
     position: relative;
     top: 0;
-    margin-left: 115px;
+    margin-left: 55px;
 
 }
 .text2{
@@ -325,10 +326,10 @@ label a{
     padding: 12px 24px; 
     text-align: center; 
     text-decoration: none; 
-    display: inline-block; 
+    display: flex; 
     font-size: 16px; 
     cursor: pointer;
-    margin-left: 70px;
+    margin-left: 10000000px;
     top: -150px;
     width: 231px;
     height: 43px;
