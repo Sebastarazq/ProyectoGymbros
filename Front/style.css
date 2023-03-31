@@ -122,17 +122,27 @@ label a{
 }
 
 /* Menu barra */
+
 .home{
     font-family: Arial, Helvetica, sans-serif;
-    background: #515151;
-    margin: 0%;
-    padding: 0%;
+    background: #303030;
+    margin: 0;
+    padding: 0;
 }
 
-.menu li img{
-    position:absolute;
+.imagenLogo{
+    position: relative;
     display: flex;
-    width: 50%;
+    width: 6%;
+    height: auto;
+}
+
+.imagenUsuario{
+    position: absolute;
+    right: 20px;
+    top:   15px;
+    width: 4%;
+    height: auto;
 }
 
 .menu {
@@ -143,13 +153,12 @@ label a{
     width: 100%;
     max-width: 100%;
     display: flex;
-    
-}  
+}
 
 .menu li a{
     text-decoration: none;
     color: white;
-    padding: 50px;
+    padding: 2rem;
     display: block;
 }
 
@@ -162,8 +171,12 @@ label a{
     background: #FF7A00;
 }
 
-/* APOLO */
 
+/* APOLO */
+.boton_citar a{
+    color: white;
+    text-decoration: none;
+}
 .textos_header img{
     width: 80px;
     height: 60px;
