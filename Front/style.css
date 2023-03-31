@@ -173,6 +173,10 @@ label a{
 
 
 /* APOLO */
+
+.cuadrado p{
+    font-size: 1px;
+}
 .boton_citar a{
     color: white;
     text-decoration: none;
