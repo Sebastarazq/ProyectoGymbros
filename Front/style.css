@@ -101,9 +101,9 @@ i{
     margin-top: 10px;
 
 }
-.two{
+.two-col .two{
     display: flex;
-    color: #0099FF;
+    color: #FF7A00;
     margin-top: 10px;
 }
 label a{
@@ -119,6 +119,10 @@ label a{
 }
 .top{
     text-align: center;
+}
+.yacuenta{
+    text-align: center;
+    color: #FF7A00;
 }
 
 /* Menu barra */
@@ -544,12 +548,27 @@ img{
     align-items: center;
     justify-content: center;
     color: #FF7A00;
+    font-size: 3.2vh;
   }
 
   .trattyc p{
-    display: flex;
+    display: block;
     align-items: left;
     color: #fff;
+    font-size: 2.2vh;
   }
+
+  .trattyc h2{
+    display: flex;
+    align-items: left;
+    color: #FF7A00;
+    font-size: 4.2vh;
+  }
+
+  .trattyc a{
+    color: #ff7b00bb;
+  }
+
+
 
   
