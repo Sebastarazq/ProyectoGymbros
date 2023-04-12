@@ -1,5 +1,8 @@
 import express from 'express'
+import csurf from 'csurf';
+import cookieParser from 'cookie-parser';
 import usuarioRoutes from './routes/usuarioRoutes.js'
+import appRoutes from './routes/appRoutes.js'
 import db from './config/db.js';
 
 
@@ -10,6 +13,13 @@ const app = express()
 
 //Habilitar lectura de datos de formularios
 app.use( express.urlencoded({extended: true}))
+
+
+//Hablitar Cookie Parser
+app.use( cookieParser())
+
+//Hablitar CSRF
+app.use( csurf({cookie: true}) )
 
 //Conexion a la base de datos
 try{
@@ -29,12 +39,13 @@ app.use(express.static('public'))
 
 
 //Routing
+app.use('/', appRoutes)
 app.use('/auth', usuarioRoutes)
 
 
 
-//Definir un puerto y arrancar el proyecto // Para el correo process.env.PORT ||
+//Definir un puerto y arrancar el proyecto // Para el correo process.env.PORT
 const port = 4000;
-app.listen(port, () =>{
+app.listen(process.env.PORT || port, () =>{
     console.log(`El servidor de ApoloWebApp esta funcionando en el puerto ${port}`)
 });
