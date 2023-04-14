@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize'
 import bcrypt from 'bcrypt'
 import db from '../config/db.js'
 
-const Cliente = db.define('clientes',{
+const Usuario = db.define('usuarios',{
     nombre: {
         type: DataTypes.STRING,
         allowNull: false
@@ -23,9 +23,9 @@ const Cliente = db.define('clientes',{
     confirmado: DataTypes.BOOLEAN
 }, {
     hooks: {
-        beforeCreate: async function(cliente) {
+        beforeCreate: async function(usuario) {
             const salt = await bcrypt.genSalt(10)
-            cliente.password = await bcrypt.hash( cliente.password, salt);
+            usuario.password = await bcrypt.hash( usuario.password, salt);
         }
     },
     scopes: {
@@ -36,10 +36,12 @@ const Cliente = db.define('clientes',{
         }
     }
 })
+//Metodos personalizados
+//Comprobar password
 
 Usuario.prototype.verificarPassword = function(password){
     return bcrypt.compareSync(password, this.password);
 }
 
 
-export default Cliente
+export default Usuario
