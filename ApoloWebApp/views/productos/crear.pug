@@ -29,11 +29,11 @@ block contenido
                     
                     div
                         label(class="block text-sm uppercase text-gray-500 mb-3 font-bold" for="precio") Precio del producto
-                        textarea#precio.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Precio del producto, ej. 5000" name="precio")
+                        input#precio.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Precio del producto, ej. 5000" type="number" min="100" max="1000000" name="precio")
                     
                     div
                         label(class="block text-sm uppercase text-gray-500 mb-3 font-bold" for="cantidad") Cantidad del producto
-                        textarea#cantidad.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Cantidad del producto" name="cantidad")
+                        input#cantidad.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Cantidad del producto" type="number" min="0" max="500" name="cantidad")
 
                     div(class="md:flex md:gap-4 space-y-5 md:space-y-0")
 
@@ -41,6 +41,9 @@ block contenido
                             label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="clase") Clase de Producto
                             select#clase.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="clase")
                                 option(value="") - Seleccione -
+                                each clase in claseProductos
+                                    option(value=clase.id selected= datos.clase ? datos.clase == clase.id ? true : false : null )= clase.nombre
+                        
                         
 
                     input(class="w-full py-3 bg-orange-500 hover:bg-orange-600 rounded text-white font-bold uppercase cursor-pointer" type="submit" value="Añadir Imagen")
