@@ -1,0 +1,45 @@
+extends ./layout/app
+
+block contenido
+    section.contenedor_apolo
+        img(src='images/Hombre-min.jpg')
+        h1.apolo APOLO
+        h1.man MAN
+        hr.linea1
+        p
+            | Como empresa del sector de salud est&eacute;tica y belleza, nuestro deber es brindar un servicio de calidad el cual pueda satisfacer las necesidades de su salud, bienestar, belleza facial y corporal.
+        button.boton_citar
+            a(href='AgendarCitas.html') CITAR
+    section.contenedor_productos
+        .cuadrado
+            p a
+            h2.titulo PRODUCTOS
+            .contenedor_productos_ejemplos
+                .producto
+                    h3.text1 Nombre
+                    img.img1(src='images/producto1.jpg' alt='imagen 1')
+                    button.boton_productos1.boton_productos CITAR
+                .producto
+                    h3.text1 Nombre
+                    img.img1(src='images/producto2.jpg' alt='imagen 1')
+                    button.boton_productos1.boton_productos CITAR
+                .producto
+                    h3.text1 Nombre
+                    img.img1(src='images/producto3.jpg' alt='imagen 1')
+                    button.boton_productos1.boton_productos CITAR
+                    h1
+    section.contenedor_citas
+        h2.titulo_citas AGENDA TU CITA
+        .contenedor_citas_ejemplos
+            .citas
+                h3.text1 Nombre
+                img.img1(src='images/cita1.jpg' alt='imagen 1')
+                button.boton_citas1 AGENDAR
+            .citas
+                h3.text1 Nombre
+                img.img1(src='images/cita2.jpg' alt='imagen 1')
+                button.boton_citas1 AGENDAR
+            .citas
+                h3.text1 Nombre
+                img.img1(src='images/cita3.jpg' alt='imagen 1')
+                button.boton_citas1 AGENDAR

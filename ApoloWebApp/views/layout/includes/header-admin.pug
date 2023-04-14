@@ -1,0 +1,13 @@
+header.bg-stone-950.p-4
+    .container.mx-auto.flex.justify-between.items-center
+        a(href="/")
+            h1.text-2xl.text-orange-500.font-extrabold.text-center Admin
+                span.font.normal Apolo
+
+        nav(class="my-5 text-sm md:flex md:items-center md:gap-3 font-bold text-orange-500 hidden")
+            a(href="/admin-productos") Mis productos 
+            a(href="") Mi perfil
+
+            form(action="auth/cerrar-sesion" method="POST")
+                input(type="hidden" name="_csrf" value= csrfToken)
+                input(type="submit" class="bg-orange-600 hover:bg-orange-700 py-2 px-10 rounded-lg text-white" value="Cerrar Sesión") 

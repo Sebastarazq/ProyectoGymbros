@@ -7,7 +7,7 @@ block contenido
                 p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg
 
     form.container(method="POST" action="/auth/login")
-        input(type="hidden" name="_csrf" value=csrfToken)
+        input(type="hidden" name="_csrf" value= csrfToken)
         .top
             header.logyregh Ingresar
         .input-field

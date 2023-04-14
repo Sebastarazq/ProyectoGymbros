@@ -7,11 +7,10 @@ html(lang="es")
         title Apolo | #{pagina}
         link(rel="stylesheet", href="/css/style.css")
         link(rel="stylesheet", href="/boxicons/css/boxicons.css")
-        link(rel="stylesheet", href="/images/css/boxicons.css")
-        block styles
-    body.logyreg
+        include includes/header-app
+    body(class="home")
 
-        main.box
+        main
             block contenido
 
         block scripts
