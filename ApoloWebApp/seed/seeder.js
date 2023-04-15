@@ -1,8 +1,9 @@
 import { exit } from 'node:process'
 import claseProductos from "./claseProductos.js";
-import ClaseProducto from "../models/ClaseProducto.js";
+import usuarios from './usuarios.js';
+import tipoUsuarios from './tipoUsuarios.js';
 import db from "../config/db.js";
-
+import {ClaseProducto, Usuario, TipoUsuario} from "../models/index.js"
 const importarDatos = async () =>{
     try {
         //Autenticar
@@ -13,7 +14,9 @@ const importarDatos = async () =>{
         //Insertamos los datos
 
         await Promise.all([
-            ClaseProducto.bulkCreate(claseProductos)
+            TipoUsuario.bulkCreate(tipoUsuarios),
+            ClaseProducto.bulkCreate(claseProductos),
+            Usuario.bulkCreate(usuarios)
             //Precio.bulkCreate(precios),
             //Usuario.bulkCreate(usuarios)
         ])

@@ -19,6 +19,11 @@ const Usuario = db.define('usuarios',{
         type: DataTypes.STRING,
         allowNull: false
     },
+    tipo_usuario: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 1
+    },
     token: DataTypes.STRING,
     confirmado: DataTypes.BOOLEAN
 }, {

@@ -128,6 +128,7 @@ const registrar = async (req,res) =>{
         apellido,
         email,
         password,
+        tipo_usuario: 1,
         token: generaId()
     })
 
