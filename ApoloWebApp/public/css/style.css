@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
 *{
-    font-family: 'Poppins', sans serif;
+    font-family: Arial, Helvetica, sans-serif;
     /*Login y register*/
 }
 .logyreg{
@@ -101,9 +101,9 @@ i{
     margin-top: 10px;
 
 }
-.two{
+.two-col .two{
     display: flex;
-    color: #ffffff;
+    color: #FF7A00;
     margin-top: 10px;
 }
 label a{
@@ -120,19 +120,33 @@ label a{
 .top{
     text-align: center;
 }
-
-/* Menu barra */
-.home{
-    font-family: Arial, Helvetica, sans-serif;
-    background: #515151;
-    margin: 0%;
-    padding: 0%;
+.yacuenta{
+    text-align: center;
+    color: #FF7A00;
 }
 
-.menu li img{
-    position:absolute;
+/* Menu barra */
+
+.home{
+    font-family: Arial, Helvetica, sans-serif;
+    background: #303030;
+    margin: 0;
+    padding: 0;
+}
+
+.imagenLogo{
+    position: relative;
     display: flex;
-    width: 50%;
+    width: 6%;
+    height: auto;
+}
+
+.imagenUsuario{
+    position: absolute;
+    right: 20px;
+    top:   15px;
+    width: 4%;
+    height: auto;
 }
 
 .menu {
@@ -143,13 +157,12 @@ label a{
     width: 100%;
     max-width: 100%;
     display: flex;
-    
-}  
+}
 
 .menu li a{
     text-decoration: none;
     color: white;
-    padding: 50px;
+    padding: 2rem;
     display: block;
 }
 
@@ -162,8 +175,16 @@ label a{
     background: #FF7A00;
 }
 
+
 /* APOLO */
 
+.cuadrado p{
+    font-size: 1px;
+}
+.boton_citar a{
+    color: white;
+    text-decoration: none;
+}
 .textos_header img{
     width: 80px;
     height: 60px;
@@ -180,16 +201,16 @@ label a{
 .apolo{
     text-align: left;
     color: white;
-    font-size: 80px;
-    margin-left: 20px;
+    font-size: 4rem;
+    margin-left: 2rem;
 }
 .man{
     text-align: left;
     color: white;
-    font-size: 80px;
+    font-size: 4rem;
     position: relative;
-    top: -55px;
-    margin-left: 20px;
+    top: -2.75rem;
+    margin-left: 2rem;
 
 }
 
@@ -205,18 +226,19 @@ label a{
     text-align: left;
     color: white;
     position: relative;
-    top: -100px;
-    font-size: 20px;
-    margin-left: 20px;
-    margin-right: 100px;
-    width: 379px; 
-    height: 144px; 
+    top: -5.25rem;
+    font-size: 1.6rem;
+    margin-left: 2rem;
+    margin-right: 10%;
+    width: 40%;
 }
 
 .contenedor_apolo hr{
     border: none;
     border-top: 50000px #FF7A00;
     margin: 50px 50;
+    top: -90px;
+    margin-left: 36px;
 }
 .boton_citar{
     position: relative;
@@ -244,6 +266,13 @@ label a{
     gap: 20px;
     background-color: #1B1B1B;
   }
+
+.cuadrado{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #1B1B1B;   
+}
 .titulo{
     text-align: center;
     color: white;
@@ -273,10 +302,10 @@ label a{
 
 .text1{
     color: white;
-    font-size: 30px;
+    font-size: 40px;
     position: relative;
     top: 0;
-    margin-left: 115px;
+    margin-left: 55px;
 
 }
 .text2{
@@ -301,10 +330,10 @@ label a{
     padding: 12px 24px; 
     text-align: center; 
     text-decoration: none; 
-    display: inline-block; 
+    display: flex; 
     font-size: 16px; 
     cursor: pointer;
-    margin-left: 70px;
+    margin-left: 10000000px;
     top: -150px;
     width: 231px;
     height: 43px;
@@ -519,13 +548,27 @@ img{
     align-items: center;
     justify-content: center;
     color: #FF7A00;
+    font-size: 3.2vh;
   }
 
   .trattyc p{
-    display: flex;
+    display: block;
     align-items: left;
     color: #fff;
+    font-size: 2.2vh;
   }
+
+  .trattyc h2{
+    display: flex;
+    align-items: left;
+    color: #FF7A00;
+    font-size: 4.2vh;
+  }
+
+  .trattyc a{
+    color: #ff7b00bb;
+  }
+
 .text-4xl{
     font-size: 2.25rem;
     line-height: 2.5rem;
