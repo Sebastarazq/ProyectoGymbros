@@ -21,19 +21,19 @@ block contenido
 
                     div
                         label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="nombre") Nombre del producto
-                        input#nombre.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Nombre del producto, ej. Desodorante" type="text" name="nombre")
+                        input#nombre.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Nombre del producto, ej. Desodorante" type="text" name="nombre" value= datos.nombre ? datos.nombre :'')
 
                     div
                         label(class="block text-sm uppercase text-gray-500 mb-3 font-bold" for="descripcion") Descripcion del producto
-                        textarea#descripcion.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Descripcion del producto" name="descripcion")
+                        textarea#descripcion.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Descripcion del producto" name="descripcion")= datos.descripcion ? datos.descripcion :''
                     
                     div
                         label(class="block text-sm uppercase text-gray-500 mb-3 font-bold" for="precio") Precio del producto
-                        input#precio.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Precio del producto, ej. 5000" type="number" min="100" max="1000000" name="precio")
+                        input#precio.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Precio del producto, ej. 5000" type="number" min="100" max="1000000" name="precio" value= datos.precio ? datos.precio :'')
                     
                     div
                         label(class="block text-sm uppercase text-gray-500 mb-3 font-bold" for="cantidad") Cantidad del producto
-                        input#cantidad.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Cantidad del producto" type="number" min="0" max="500" name="cantidad")
+                        input#cantidad.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Cantidad del producto" type="number" min="0" max="500" name="cantidad" value= datos.cantidad ? datos.cantidad :'')
 
                     div(class="md:flex md:gap-4 space-y-5 md:space-y-0")
 
