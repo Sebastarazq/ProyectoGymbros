@@ -1,45 +1,221 @@
 extends ./layout/app
 
 block contenido
-    section.contenedor_apolo
-        img(src='images/Hombre-min.jpg')
-        h1.apolo APOLO
-        h1.man MAN
-        hr.linea1
-        p
-            | Como empresa del sector de salud est&eacute;tica y belleza, nuestro deber es brindar un servicio de calidad el cual pueda satisfacer las necesidades de su salud, bienestar, belleza facial y corporal.
-        button.boton_citar
-            a(href='AgendarCitas.html') CITAR
-    section.contenedor_productos
-        .cuadrado
-            p a
-            h2.titulo PRODUCTOS
-            .contenedor_productos_ejemplos
-                .producto
-                    h3.text1 Nombre
-                    img.img1(src='images/producto1.jpg' alt='imagen 1')
-                    button.boton_productos1.boton_productos CITAR
-                .producto
-                    h3.text1 Nombre
-                    img.img1(src='images/producto2.jpg' alt='imagen 1')
-                    button.boton_productos1.boton_productos CITAR
-                .producto
-                    h3.text1 Nombre
-                    img.img1(src='images/producto3.jpg' alt='imagen 1')
-                    button.boton_productos1.boton_productos CITAR
-                    h1
-    section.contenedor_citas
-        h2.titulo_citas AGENDA TU CITA
-        .contenedor_citas_ejemplos
-            .citas
-                h3.text1 Nombre
-                img.img1(src='images/cita1.jpg' alt='imagen 1')
-                button.boton_citas1 AGENDAR
-            .citas
-                h3.text1 Nombre
-                img.img1(src='images/cita2.jpg' alt='imagen 1')
-                button.boton_citas1 AGENDAR
-            .citas
-                h3.text1 Nombre
-                img.img1(src='images/cita3.jpg' alt='imagen 1')
-                button.boton_citas1 AGENDAR
+    section.hero.d-flex.flex-column.justify-content-center.align-items-center#home
+        .bg-overlay
+        .container
+            .row
+                .col-lg-8.col-md-10.mx-auto.col-12
+                    .hero-text.mt-5.text-center
+                        h6(data-aos='fade-up', data-aos-delay='300') Nueva forma de construir un estilo de vida saludable!
+                        h1.text-white(data-aos='fade-up', data-aos-delay='500') MEJORA TU CUERPO Y ESTETICA EN APOLO
+                        a.btn.custom-btn.mt-3(data-aos='fade-up', data-aos-delay='600', href='#feature') Empezar
+                        a.btn.custom-btn.bordered.mt-3(data-aos='fade-up', data-aos-delay='700', href='#about') Aprende más
+    section.feature#feature
+        .container
+            .row
+                .d-flex.flex-column.justify-content-center.ml-lg-auto.mr-lg-5.col-lg-5.col-md-6.col-12
+                    h2.mb-3.text-white(data-aos="fade-up") Nuevo en Apolo Man?
+                    h6.mb-4.text-white(data-aos="fade-up") Somos una empresa de estetica masculina.
+                    p(data-aos="fade-up" data-aos-delay="200") Nos esforzamos por expandir nuestra presencia a través de la apertura de nuevas sucursales en todo el país, lo que nos permitirá ofrecer nuestros servicios a un público más amplio y diverso.
+                .mr-lg-auto.mt-3.col-lg-4.col-md-6.col-12
+                    .about-working-hours
+                        div
+                            h2.mb-4.text-white(data-aos="fade-up" data-aos-delay="500") Horario laboral
+                            strong.d-block(data-aos="fade-up" data-aos-delay="600") Domingos : Cerrado
+                            strong.mt-3.d-block(data-aos="fade-up" data-aos-delay="700") Lunes - Viernes
+                            p(data-aos="fade-up" data-aos-delay="800") 7:00 AM - 10:00 PM
+                            strong.mt-3.d-block(data-aos="fade-up" data-aos-delay="700") Sabados
+                            p(data-aos="fade-up" data-aos-delay="800") 8:00 AM - 7:00 PM
+    section.about.section#about
+        .container
+            .row
+                .mt-lg-5.mb-lg-0.mb-4.col-lg-5.col-md-10.mx-auto.col-12(data-aos="fade-up" data-aos-delay="300")
+                    h2.mb-4 Hola, nosotros somos Apolo Man
+                    p(data-aos="fade-up" data-aos-delay="400") En nuestra empresa, nos dedicamos a proporcionar servicios de estética masculina de alta calidad para ayudar a nuestros clientes a sentirse y verse bien. Nuestra misión es ofrecer una experiencia única y personalizada a cada uno de nuestros clientes, brindándoles un servicio excepcional y productos de alta calidad que se adapten a sus necesidades y preferencias individuales.
+                    p(data-aos="fade-up" data-aos-delay="500") Además, estamos comprometidos con la innovación y el desarrollo continuo de nuevos productos y técnicas que nos permitan estar a la vanguardia de la industria de la estética masculina.
+                .ml-lg-auto.col-lg-3.col-md-6.col-12(data-aos="fade-up" data-aos-delay="700")
+                    .team-thumb
+                        img.img-fluid(src="images/team/doctor1.jpg", alt="Trainer")
+                        .team-info.d-flex.flex-column
+                        h3 Clarence Williams
+                        span Especialista esteticista facial
+                        ul.social-icon.mt-3
+                        li 
+                            a.fa.fa-twitter(href="#")
+                        li 
+                            a.fa.fa-instagram(href="#")
+                .mr-lg-auto.mt-5.mt-lg-0.mt-md-0.col-lg-3.col-md-6.col-12(data-aos="fade-up" data-aos-delay="800")
+                    .team-thumb
+                        img.img-fluid(src="images/team/doctor2.jpg", alt="Trainer")
+                        .team-info.d-flex.flex-column
+                            h3 Carlos Ruiz
+                            span Especialista esteticista corporal
+                            ul.social-icon.mt-3
+                                li
+                                    a.fa.fa-instagram(href="#")
+                                li
+                                    a.fa.fa-facebook(href="#")
+    section.class.section#class
+        .container
+            .row
+                .col-lg-12.col-12.text-center.mb-5
+                    h6(data-aos="fade-up")
+                    h2(data-aos="fade-up" data-aos-delay="200") Conoce nuestros servicios
+                .col-lg-4.col-md-6.col-12(data-aos="fade-up" data-aos-delay="400")
+                    .class-thumb
+                        img.img-fluid(src="images/class/masaje.jpg", alt="Class")
+                        .class-info
+                            h3.mb-1 Masajes
+                            span
+                                strong Especialista
+                                |  - Ruiz
+                            p.mt-3 Nuestro servicio de masajes relaja los músculos y alivia el estrés, adaptándose a las necesidades de cada cliente y mejorando la circulación sanguínea, la flexibilidad y el alivio del dolor muscular
+                .mt-5.mt-lg-0.mt-md-0.col-lg-4.col-md-6.col-12(data-aos="fade-up" data-aos-delay="500")
+                    .class-thumb
+                        img.img-fluid(src="images/class/nutricion.jpg", alt="Class")
+                        .class-info
+                            h3.mb-1 Nutrición
+                            span
+                                strong Especialita
+                                |  - Ruiz
+                            p.mt-3 Nuestro servicio de nutrición ofrece asesoramiento personalizado sobre hábitos alimenticios saludables y planes de dieta adaptados a las necesidades y objetivos individuales de cada cliente
+                .mt-5.mt-lg-0.col-lg-4.col-md-6.col-12(data-aos="fade-up" data-aos-delay="600")
+                    .class-thumb
+                        img.img-fluid(src="images/class/manicura.jpg", alt="Class")
+                        .class-info
+                            h3.mb-1 Manicura
+                            span
+                                strong Especialista
+                                |  - Williams
+                            p.mt-3 Nuestro servicio de manicura ofrece cuidado de las uñas y las manos, incluyendo limpieza, corte y pulido de uñas, remoción de cutículas y aplicación de esmalte de uñas.
+    section.schedule.section#schedule
+        .container
+            .row
+                .col-lg-12.col-12.text-center
+                    h6(data-aos='fade-up') Estos son nuestros horarios
+                    h2.text-white(data-aos='fade-up' data-aos-delay='200') Seleciona uno y agenda tu cita!
+                .col-lg-12.py-5.col-md-12.col-12
+                    table.table.table-bordered.table-responsive.schedule-table(data-aos='fade-up' data-aos-delay='300')
+                        thead.thead-light
+                            th
+                                i.fa.fa-calendar
+                            th Lunes
+                            th Martes
+                            th Miercoles
+                            th Jueves
+                            th Viernes
+                            th Sabado
+                        tbody
+                            tr
+                                td
+                                    small 7:00 am
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Barbería
+                                    span 7:00 am - 9:00 am
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Masajes
+                                    span 7:00 am - 9:00 am
+                                td
+                                td
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Nutrición
+                                    span 7:00 am - 9:00 am
+                            tr
+                                td
+                                    small 9:00 am
+                                td
+                                td
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Manicura
+                                    span 8:00 am - 9:00 am
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Depilación
+                                    span 8:00 am - 9:00 am
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Spa
+                                    span 8:00 am - 9:00 am
+                            tr
+                                td
+                                    small 11:00 am
+                                td
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Spa
+                                    span 11:00 am - 2:00 pm
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Afeitado
+                                    span 11:30 am - 3:30 pm
+                                td
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Nutrición
+                                    span 11:50 am - 5:20 pm
+                            tr
+                                td
+                                    small 2:00 pm
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(href='#' data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Maquillaje
+                                    span 2:00 pm - 4:00 pm
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(href='#' data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Masajista
+                                    span 3:00 pm - 6:00 pm
+                                td
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(href='#' data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Pedicura
+                                    span 6:00 pm - 9:00 pm
+                                td
+                                td
+                                    strong
+                                        a.btn.custom-btn.bg-color.mt-3(href='#' data-aos='fade-up' data-aos-delay='300' data-toggle='modal' data-target='#membershipForm') Barber&iacute;a
+                                    span 5:00 pm - 7:00 pm
+
+    footer.site-footer
+        .container
+            .row
+                .ml-auto.col-lg-4.col-md-5
+                    p.copyright-text Copyright © 2022 Apolo Man Co.
+                .d-flex.justify-content-center.mx-auto.col-lg-5.col-md-7.col-12
+                    p.mr-4
+                        i.fa.fa-envelope-o.mr-1
+                        a(href="#") ApoloMan@gmail.com
+                    p
+                        i.fa.fa-phone.mr-1
+                        | +57 3118864535
+                        
+    .modal.fade#membershipForm(tabindex="-1", role="dialog", aria-labelledby="membershipFormLabel", aria-hidden="true")
+        .modal-dialog(role="document")
+            .modal-content
+                .modal-header
+                    h2.modal-title#membershipFormLabel Agenda tu cita
+                    button.close(type="button", data-dismiss="modal", aria-label="Close")
+                        span(aria-hidden="true") ×
+                .modal-body
+                    form.membership-form.webform(role="form")
+                        input.form-control(type="text", name="cf-name", placeholder="Nombre")
+                        input.form-control(type="email", name="cf-email", placeholder="Correo")
+                        input.form-control(type="tel", name="cf-phone", placeholder="Número de telefono")
+                        textarea.form-control(rows="3", name="cf-message", placeholder="Mensaje Adicional")
+                        button.form-control#submit-button(type="submit", name="submit") Agendar cita
+                        div.custom-control.custom-checkbox
+                            input.custom-control-input(type="checkbox", id="signup-agree")
+                            label.custom-control-label.text-small.text-muted(for="signup-agree") Estoy de acuedo con
+                                a(href="Tyc.html") Terminos & Condiciones
+                .modal-footer
+
+block scripts
+    script(src="js/jquery.min.js")
+    script(src="js/bootstrap.min.js")
+    script(src="js/aos.js")
+    script(src="js/smoothscroll.js")
+    script(src="js/custom.js")

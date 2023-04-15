@@ -1,11 +1,20 @@
-header.homeh
-  ul.menu
-    img.imagenLogo(src='images/1.png')
-    li
-      a(href='#') Home 
-    li
-      a(href='#') Citas 
-    li
-      a(href='#') Productos 
-    a(href='/auth/login')
-      img.imagenUsuario(src='images/usuario.png')
+header
+  nav.navbar.navbar-expand-lg.fixed-top
+    .container
+      a.navbar-brand(href='/') Apolo Man
+      button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      div.collapse.navbar-collapse#navbarNav
+        ul.navbar-nav.ml-lg-auto
+          li.nav-item
+            a.nav-link.smoothScroll(href='/') Home
+          li.nav-item
+            a.nav-link.smoothScroll(href='#about') Sobre nosotros
+          li.nav-item
+            a.nav-link.smoothScroll(href='#class') Clases
+          li.nav-item
+            a.nav-link.smoothScroll(href='#schedule') Citas
+          li.nav-item
+            a.nav-link.smoothScroll(href='/productos') Productos 
+          li.nav-item
+            a.nav-link.smoothScroll(href='/auth/login') - Inicia sesión -
