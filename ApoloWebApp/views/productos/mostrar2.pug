@@ -1,0 +1,39 @@
+extends ../layout/app
+
+block contenido
+    section.py-5
+        .container.px-4.px-lg-5.my-5
+            .row.gx-4.gx-lg-5.align-items-center
+                .col-md-6
+                    img.card-img-top.mb-5.mb-md-0(src=`/uploads/${producto.imagen}`, alt=`Imagen del producto ${producto.nombre}`)
+                .col-md-6
+                    .small.mb-1= producto.clase_producto.nombre
+                    h1.display-5.fw-bolder= producto.nombre
+                    .fs-5.mb-5
+                        span.text-decoration-line-through $
+                        span.text-decoration-line-through= producto.precio.toLocaleString('es-ES', { minimumFractionDigits: 2 })
+                    p.lead= producto.descripcion
+                    .d-flex
+                        button.btn.btn-outline-dark.flex-shrink-0(type='button')
+                            i.bi-cart-fill.me-1
+                            | Comprar
+    section.py-5.bg-light
+        .container.px-4.px-lg-5.mt-5
+            h2.fw-bolder.mb-4 Related products
+            .row.gx-4.gx-lg-5.row-cols-2.row-cols-md-3.row-cols-xl-4.justify-content-center
+                each productoRelacionado in productosRelacionados
+                    .col.mb-5
+                        .card.h-100
+                            //- Product image
+                            img.card-img-top.img-fluid(src=`/uploads/${productoRelacionado.imagen}`, alt=`Imagen del producto ${productoRelacionado.nombre}`)
+                            //- Product details
+                            .card-body.p-4
+                                .text-center
+                                    //- Product name
+                                    h5.fw-bolder= productoRelacionado.nombre
+                                    //- Product price
+                                    | $#{productoRelacionado.precio.toLocaleString('es-ES', {minimumFractionDigits: 1, maximumFractionDigits: 2})}
+                            //- Product actions
+                            .card-footer.p-4.pt-0.border-top-0.bg-transparent
+                                .text-center
+                                    a.btn.btn-outline-dark.mt-auto(href=`/producto/${productoRelacionado.id}`) Ver detalles

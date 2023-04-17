@@ -1,0 +1,36 @@
+extends ../layout/index3
+
+block contenido
+    .container.rounded.bg-white.mt-5.mb-5
+        .row
+            .col-md-3.border-right
+                .d-flex.flex-column.align-items-center.text-center.p-3.py-5
+                    img.rounded-circle.mt-5(width='150px' src='https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg')
+                    span.font-weight-bold= usuario.nombre
+                    span.font-weight-bold= usuario.apellido
+                    span.text-black-50= usuario.email
+                    span
+            .col-md-5.border-right
+                form(method="POST" action=`/auth/mi-perfil/${usuario.id}`)
+                    input(type="hidden" name="_csrf" value= csrfToken)
+                    input(type="hidden" name="id" value= datos.id)
+                    .p-3.py-5
+                        .d-flex.justify-content-between.align-items-center.mb-3
+                            h4.text-right Editar Perfil
+                        .row.mt-2
+                            .col-md-6
+                                label.labels Nombre
+                                input.form-control(type='text' placeholder='Nombre' name='nombre' value= datos.nombre ? datos.nombre :'')
+                            .col-md-6
+                                label.labels Apellido
+                                input.form-control(type='text' placeholder='Apellido' name='apellido' value= datos.apellido ? datos.apellido :'' )
+                        .row.mt-3
+                            .col-md-12
+                                label.labels Email 
+                                input.form-control(type='text' placeholder='Email' name='email' value= datos.email ? datos.email :'')
+                            .col-md-12
+                                label.labels Nueva Contraseña
+                                input.form-control(type='password' placeholder='Nueva Contraseña' name='password' value='')
+                        .mt-5.text-center
+                                
+                        input.btn.btn-primary.profile-button(type='submit' value="Guardar Cambios")

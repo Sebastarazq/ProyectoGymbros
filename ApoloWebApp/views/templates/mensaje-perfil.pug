@@ -1,0 +1,13 @@
+extends ../layout/index3
+
+block contenido
+  .container
+    .row.justify-content-center.align-items-center(style='height: 70vh;')
+      .col-md-6.text-center
+        .alert.alert-success(role='alert')
+          h4.mb-3= pagina
+          p.mb-3 Perfil actualizado correctamente.
+          a.btn.btn-lg.btn-success.mx-2(href=`/auth/mi-perfil/${usuario.id}`) Ver Perfil
+          a.btn.btn-lg.btn-success.mx-2(href='/') Volver al Inicio
+
+
