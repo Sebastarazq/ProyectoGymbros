@@ -293,6 +293,67 @@ const nuevoPassword = async (req, res) =>{
     })
 
 }
+
+
+const editarPerfil = async (req,res) => {
+
+    const { id } = req.params;
+    const usuario = req.usuario;
+    const usuarioAutenticado = true; // Si llegamos hasta aquí es porque el usuario está autenticado
+
+    const usuarios =  await Usuario.findByPk(id)
+
+
+  // Revisar que quien visite la URL, es el dueño del perfil
+  if (usuario.id.toString() !== id.toString()) {
+    return res.redirect('/404');
+  }
+
+    res.render('auth/editar-perfil',{
+        pagina: 'Editar Perfil',
+        usuario,
+        autenticado: usuarioAutenticado,
+        datos: usuarios,
+        csrfToken: req.csrfToken()
+
+    })
+
+}
+
+const guardarCambios = async (req, res) => {
+
+    const { id } = req.params;
+    const usuario = req.usuario;
+
+  
+    // Revisar que quien visite la URL, es el dueño del perfil
+    if (usuario.id.toString() !== id.toString()) {
+      return res.redirect('/404');
+    }
+  
+    //Extraer los datos
+    const { nombre, apellido, email, password } = req.body;
+  
+    // Hashear la contraseña proporcionada por el usuario
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    
+    //Actualizar los datos del usuario en la base de datos
+    
+    await Usuario.update(
+      {
+        nombre,
+        apellido,
+        email,
+        password: hashedPassword, // usar la contraseña hasheada
+      },
+      { where: { id } }
+    );
+    res.render('templates/mensaje-perfil',{
+        pagina: 'Perfil Actualizado',
+        usuario,
+    })
+};
 export {
     formularioLogin,
     autenticar,
@@ -302,5 +363,7 @@ export {
     formularioOlvidePassword,
     resetPassword,
     comprobarToken,
-    nuevoPassword
+    nuevoPassword,
+    editarPerfil,
+    guardarCambios
 }

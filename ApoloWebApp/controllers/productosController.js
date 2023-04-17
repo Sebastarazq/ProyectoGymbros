@@ -1,25 +1,61 @@
 import { unlink } from 'node:fs/promises'
 import { validationResult } from 'express-validator'
-import { ClaseProducto, Producto } from '../models/index.js'
+import { ClaseProducto, Producto, Usuario } from '../models/index.js'
+import Sequelize from 'sequelize';
+import jwt from 'jsonwebtoken'
 
 const admin = async (req,res) => {
 
-    const { id } = req.usuario
+    //Leer QueryString
 
-    const productos = await Producto.findAll({
-        where: {
-            usuarioId: id
-        },
-        include: [
-            { model: ClaseProducto, as: 'clase_producto'}
-        ]
-    })
+    const { pagina: paginaActual }= req.query
+
+    const expresion = /^[1-9]$/
+
+    if(!expresion.test(paginaActual)){
+        return res.redirect('/admin-productos?pagina=1')
+    }
+
+    try {
+
+        //Limites y Offset para el paginador
+
+        const limit = 6;
+        const offset = ((paginaActual*limit) - limit)
+
+        const { id } = req.usuario
+
+        const [productos, total] = await Promise.all([
+            await Producto.findAll({
+                limit,
+                offset,
+                where: {
+                    usuarioId: id
+                },
+                include: [
+                    { model: ClaseProducto, as: 'clase_producto'}
+                ],
+            }),
+            Producto.count({
+                where: {
+                    usuarioId: id
+                }
+            })
+        ])
     
     res.render('productos/admin', {
         pagina: 'Productos de la Tienda',
         productos,
         csrfToken: req.csrfToken(),
+        paginas: Math.ceil(total/limit),
+        paginaActual: Number(paginaActual),
+        total,
+        offset,
+        limit
     })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 
@@ -257,6 +293,58 @@ const eliminar = async (req, res) =>{
     res.redirect('/admin-productos')
 }
 
+//Muestra un producto
+
+const mostrarProducto = async (req, res) => {
+    const { id } = req.params
+    const token = req.cookies._token;
+    const usuarioAutenticado = token ? true : false;
+
+    let usuario;
+
+    if (token) {
+        // Si el usuario tiene un token, obtenemos su id y buscamos su información en la base de datos
+        const idUsuario = jwt.verify(token, process.env.JWT_SECRET).id;
+        usuario = await Usuario.findByPk(idUsuario);
+    }
+  
+    try {
+      const producto = await Producto.findByPk(id, {
+        include: [
+          { model: ClaseProducto, as: 'clase_producto' }
+        ]
+      })
+  
+      if (!producto || !producto.publicado) {
+        return res.redirect('/404')
+      }
+        // Busca los productos relacionados al producto actual
+      const productosRelacionados = await Producto.findAll({
+        limit: 3, // Limita a un máximo de 3 productos relacionados
+        where: {
+          id: { [Sequelize.Op.ne]: producto.id }, // Excluye el producto actual
+          publicado: true, // Solo muestra productos publicados
+        },
+        include: [
+          ClaseProducto // Incluye la clase de producto
+        ],
+        order: [['createdAt', 'DESC']] // Ordena por fecha de creación descendente
+      })
+  
+      res.render('productos/mostrar2', {
+        producto,
+        productosRelacionados,
+        usuario,
+        pagina: producto.nombre,
+        autenticado: usuarioAutenticado,
+        csrfToken: req.csrfToken(),
+      })
+    } catch (error) {
+      console.log(error)
+      res.redirect('/404')
+    }
+  }  
+
 export {
     admin,
     crear,
@@ -265,5 +353,6 @@ export {
     almacenarImagen,
     editar,
     guardarCambios,
-    eliminar
+    eliminar,
+    mostrarProducto
 }

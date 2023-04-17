@@ -1,7 +1,7 @@
 import express from "express";
 import{ body } from 'express-validator'
 import { admin, crear, guardar, agregarImagen, almacenarImagen, editar, guardarCambios,
-eliminar } from '../controllers/productosController.js'
+eliminar, mostrarProducto } from '../controllers/productosController.js'
 import protegerRuta from "../middleware/protegerRuta.js"
 import esTrabajador from "../middleware/tipoUsuario.js";
 import upload from "../middleware/subirImagen.js"
@@ -16,7 +16,7 @@ esTrabajador,
 body('nombre').notEmpty().withMessage('El titulo del anuncio es obligatorio'),
 body('descripcion')
 .notEmpty().withMessage('La descripcion no puede ir vacia')
-.isLength({ max:300 }).withMessage('La descripcion es muy larga'),
+.isLength({ max:500 }).withMessage('La descripcion es muy larga'),
 body('precio').notEmpty().withMessage('El Precio es obligatorio'),
 body('cantidad').notEmpty().withMessage('La cantidad es obligatorio'),
 body('clase').isNumeric().withMessage('Selecciona una clase'),    
@@ -48,7 +48,7 @@ esTrabajador,
 body('nombre').notEmpty().withMessage('El titulo del anuncio es obligatorio'),
 body('descripcion')
 .notEmpty().withMessage('La descripcion no puede ir vacia')
-.isLength({ max:300 }).withMessage('La descripcion es muy larga'),
+.isLength({ max:500 }).withMessage('La descripcion es muy larga'),
 body('precio').notEmpty().withMessage('El Precio es obligatorio'),
 body('cantidad').notEmpty().withMessage('La cantidad es obligatorio'),
 body('clase').isNumeric().withMessage('Selecciona una clase'),    
@@ -59,6 +59,12 @@ router.post('/productos/eliminar/:id',
     protegerRuta,
     esTrabajador,
     eliminar
+)
+
+//Area publica
+router.get('/producto/:id',
+    //identificarUsuario,
+    mostrarProducto
 )
 
 
