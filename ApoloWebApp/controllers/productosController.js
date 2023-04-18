@@ -42,10 +42,13 @@ const admin = async (req,res) => {
                 }
             })
         ])
+
+    const usuario = req.usuario;
     
     res.render('productos/admin', {
         pagina: 'Productos de la Tienda',
         productos,
+        usuario,
         csrfToken: req.csrfToken(),
         paginas: Math.ceil(total/limit),
         paginaActual: Number(paginaActual),
@@ -62,6 +65,10 @@ const admin = async (req,res) => {
 //Formulario para crear un nuevo producto
 const crear =  async (req,res) => {
     //Consultar Modelo de Clase de producto
+
+    const usuario = req.usuario;
+    const usuarioAutenticado = true; // Si llegamos hasta aquí es porque el usuario está autenticado
+
     const [claseProductos]= await Promise.all([
         ClaseProducto.findAll()
     ])
@@ -70,12 +77,17 @@ const crear =  async (req,res) => {
         pagina: 'Crear Productos',
         csrfToken: req.csrfToken(),
         claseProductos,
+        usuario,
+        autenticado: usuarioAutenticado,
         datos: {}
     })
 }
 
 const guardar =  async (req, res) => {
     // Validacion
+
+    const usuario = req.usuario;
+    const usuarioAutenticado = true; // Si llegamos hasta aquí es porque el usuario está autenticado
 
     let resultado = validationResult(req)
 
@@ -89,6 +101,7 @@ const guardar =  async (req, res) => {
             pagina: 'Crear Producto',
             csrfToken: req.csrfToken(),
             claseProductos,
+            usuario,
             errores: resultado.array(),
             datos: req.body
         })
@@ -121,7 +134,8 @@ const guardar =  async (req, res) => {
 const agregarImagen = async (req,res) => {
 
     const {id} = req.params
-
+    
+    const usuario = req.usuario;
     //Validar que el producto exista
     const producto =  await Producto.findByPk(id)
 
@@ -142,7 +156,8 @@ const agregarImagen = async (req,res) => {
     res.render('productos/agregar-imagen', {
         pagina:`Agregar Imagen ${producto.nombre}`, 
         csrfToken: req.csrfToken(),
-        producto
+        producto,
+        usuario,
     })
 }
 
@@ -185,6 +200,8 @@ const almacenarImagen = async (req, res, next) =>{
 const editar = async (req,res) => {
 
     const { id } =req.params
+
+    const usuario = req.usuario;
     //Validar que el producto exista
     const producto =  await Producto.findByPk(id)
 
@@ -205,6 +222,7 @@ const editar = async (req,res) => {
         pagina: `Editar Producto: ${producto.nombre}`,
         csrfToken: req.csrfToken(),
         claseProductos,
+        usuario,
         datos: producto
     })
 }
@@ -272,6 +290,7 @@ const guardarCambios = async (req, res) =>{
 const eliminar = async (req, res) =>{
 
     const { id } = req.params
+    
 
     //Validar que el producto exista
     const producto = await Producto.findByPk(id)
