@@ -1,0 +1,104 @@
+extends ../layout/app
+
+block contenido
+
+    main
+        .container(style='margin-top: 90px;')
+            nav.navbar.navbar-expand-lg.navbar-dark.mt-3.mb-5.shadow.p-2(style='background-color: black;')
+                .container-fluid
+                    a.navbar-brand(href='#') Categories:
+                    button.navbar-toggler(type='button' data-mdb-toggle='collapse' data-mdb-target='#navbarSupportedContent2' aria-controls='navbarSupportedContent2' aria-expanded='false' aria-label='Toggle navigation')
+                        i.fas.fa-bars
+                    #navbarSupportedContent2.collapse.navbar-collapse
+                        ul.navbar-nav.me-auto.mb-2.mb-lg-0
+                            each claseProducto in productos.rows.slice(0, 5) 
+                                li.nav-item
+                                    a.nav-link.text-white(href=`#${claseProducto.clase_producto.nombre}`) #{claseProducto.clase_producto.nombre}
+                            li.nav-item.dropdown
+                                a.nav-link.dropdown-toggle.text-white(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+                                    i.fas.fa-caret-down
+                                ul.dropdown-menu.dropdown-menu-dark
+                                    each claseProducto in productos.rows.slice(5) 
+                                        li
+                                            a.dropdown-item(href=`#${claseProducto.clase_producto.nombre}`) #{claseProducto.clase_producto.nombre}
+          
+                        //- Search
+                        form.w-auto.py-1.ml-auto(style='max-width: 12rem')
+                            input.form-control.rounded-0(type='search' placeholder='Search' aria-label='Search')
+            section
+                .text-center
+                    .row.row-cols-4
+                        each producto in productos.rows.slice(0, 4)
+                            .col.mb-4
+                                .card.h-100.rounded
+                                    .bg-image.hover-zoom.ripple.ripple-surface.ripple-surface-light(data-mdb-ripple-color='light')
+                                        img.w-100(src=`/uploads/${producto.imagen}`, alt=`Imagen del producto ${producto.nombre}`)
+                                        a(href='#!')
+                                            .mask
+                                            .d-flex.justify-content-start.align-items-end.h-100
+                                                h5
+                                            .hover-overlay
+                                                .mask(style='background-color: rgba(251, 251, 251, 0.15);')
+                                    .card-body
+                                        a.text-reset(href=`/producto/${producto.id}`)
+                                            h5.card-title.mb-2= producto.nombre
+                                        a.text-reset(href='')
+                                            p= producto.clase_producto.nombre
+                                        h6.price(style="color:black;") $#{producto.precio.toLocaleString('es-ES', {minimumFractionDigits: 1, maximumFractionDigits: 2})}
+
+                .text-center
+                    .row.row-cols-1.row-cols-md-2.row-cols-lg-4.g-4
+                        each producto in productos.rows.slice(4, 8)
+                            .col-lg-3.col-md-6.mb-4
+                                .card.h-100.rounded
+                                    .bg-image.hover-zoom.ripple.ripple-surface.ripple-surface-light(data-mdb-ripple-color='light')
+                                        img.w-100(src=`/uploads/${producto.imagen}`, alt=`Imagen del producto ${producto.nombre}`)
+                                        a(href='#!')
+                                            .hover-overlay
+                                                .mask(style='background-color: rgba(251, 251, 251, 0.15);')
+                                    .card-body
+                                        a.text-reset(href='')
+                                            h5.card-title.mb-2= producto.nombre
+                                        a.text-reset(href='')
+                                            p= producto.clase_producto.nombre
+                                        h6.price(style="color:black;") $#{producto.precio.toLocaleString('es-ES', {minimumFractionDigits: 1, maximumFractionDigits: 2})}
+
+                .d-flex.justify-content-center.mt-4
+                    .pagination
+                        if !isFirstPage
+                            li.page-item
+                                a.page-link(href=`/productos?page=${currentPage - 1}`) Anterior
+                        each page in Array.from({ length: pages }, (_, i) => i + 1)
+                            if page === currentPage
+                                li.page-item.active
+                                    a.page-link(href=`/productos?page=${page}`)= page
+                            else
+                                li.page-item
+                                    a.page-link(href=`/productos?page=${page}`)= page
+                        if !isLastPage
+                            li.page-item
+                                a.page-link(href=`/productos?page=${currentPage + 1}`) Siguiente
+
+
+
+
+
+    footer.site-footer
+        .container
+            .row
+                .ml-auto.col-lg-4.col-md-5
+                    p.copyright-text Copyright © 2022 Apolo Man Co.
+                .d-flex.justify-content-center.mx-auto.col-lg-5.col-md-7.col-12
+                    p.mr-4
+                        i.fa.fa-envelope-o.mr-1
+                        a(href="#") ApoloMan@gmail.com
+                    p
+                        i.fa.fa-phone.mr-1
+                        | +57 3118864535
+block scripts
+    block scripts
+    script(src="js/jquery.min.js")
+    script(src="js/bootstrap.min.js")
+    script(src="js/aos.js")
+    script(src="js/smoothscroll.js")
+    script(src="js/custom.js")

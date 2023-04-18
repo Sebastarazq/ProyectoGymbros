@@ -1,0 +1,21 @@
+extends ../layout/404
+
+block contenido
+    .bg-light.text-center.pt-5(style='height: 100vh;')
+        .container
+            h1.display-1.pt-5.font-weight-bold 404
+            h1.display-4.pt-1.pb-3 Page not found
+            h3.font-weight-light.text-secondary
+                | The page you are looking for might have 
+                br
+                |  been removed
+            a.btn.btn-outline-dark.btn-light.mt-3.pt-3.pb-3.pr-4.pl-4(href='/') Return to home
+
+
+block scripts
+    block scripts
+    script(src="js/jquery.min.js")
+    script(src="js/bootstrap.min.js")
+    script(src="js/aos.js")
+    script(src="js/smoothscroll.js")
+    script(src="js/custom.js")
