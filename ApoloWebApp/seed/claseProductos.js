@@ -1,18 +1,18 @@
 const claseProductos =  [
     {
-        nombre: 'Desodorante'
+        nombre: 'Loción'
     },
     {
-        nombre: 'Proteina'
+        nombre: 'Productos Capilares'
     },
     {
-        nombre: 'Crema'
+        nombre: 'Colageno'
     },
     {
-        nombre: 'Limpieza Personal'
+        nombre: 'Creatina'
     },
     {
-        nombre: 'Maquina de afeitar'
+        nombre: 'Pre-Entreno'
     }
 ]
 

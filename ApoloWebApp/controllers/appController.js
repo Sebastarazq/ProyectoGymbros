@@ -68,15 +68,28 @@ const todoproductos = async (req, res) => {
         }
       ]
     });
+    const todasLasClases = await ClaseProducto.findAll({
+      attributes: ['nombre', 'id']
+    });
+      
   
     const pages = Math.ceil(productos.count / limit); // número total de páginas
     const isFirstPage = page === 1;
     const isLastPage = page === pages;
   
+    const claseProductos = productos.rows
+      .filter((currentProduct, index, arr) => {
+        return currentProduct.clase_producto && arr.findIndex(product => product.clase_producto.id === currentProduct.clase_producto.id) === index;
+      })
+      .map(product => product.clase_producto.nombre);
+  
+    // Aquí renderizamos la vista 'productos/productos' con los datos necesarios
     res.render('productos/productos', {
       pagina: 'Productos',
       usuario,
       productos,
+      claseProductos: claseProductos.slice(0, 5), // Tomamos solo las primeras 5 clases de productos
+      todasLasClases: claseProductos.slice(5).concat(todasLasClases), // Concatenamos las demás clases de productos con todasLasClases
       csrfToken: req.csrfToken(),
       autenticado: usuarioAutenticado,
       isFirstPage,
@@ -84,7 +97,7 @@ const todoproductos = async (req, res) => {
       currentPage: page,
       pages,
     });
-};
+};  
     
 const categoria = (req,res) => {
     

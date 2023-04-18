@@ -6,7 +6,7 @@ block contenido
         .container(style='margin-top: 90px;')
             nav.navbar.navbar-expand-lg.navbar-dark.mt-3.mb-5.shadow.p-2(style='background-color: black;')
                 .container-fluid
-                    a.navbar-brand(href='#') Categories:
+                    a.navbar-brand(href='#') Categorias:
                     button.navbar-toggler(type='button' data-mdb-toggle='collapse' data-mdb-target='#navbarSupportedContent2' aria-controls='navbarSupportedContent2' aria-expanded='false' aria-label='Toggle navigation')
                         i.fas.fa-bars
                     #navbarSupportedContent2.collapse.navbar-collapse
@@ -16,15 +16,17 @@ block contenido
                                     a.nav-link.text-white(href=`#${claseProducto.clase_producto.nombre}`) #{claseProducto.clase_producto.nombre}
                             li.nav-item.dropdown
                                 a.nav-link.dropdown-toggle.text-white(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
-                                    i.fas.fa-caret-down
+                                    span.caret
                                 ul.dropdown-menu.dropdown-menu-dark
-                                    each claseProducto in productos.rows.slice(5) 
-                                        li
-                                            a.dropdown-item(href=`#${claseProducto.clase_producto.nombre}`) #{claseProducto.clase_producto.nombre}
-          
+                                    //- Iteramos por todasLasClases para mostrar todas las clases de productos
+                                    each claseProducto in todasLasClases
+                                        li.dropdown-item
+                                            a(href=`#${claseProducto.nombre}`) #{claseProducto.nombre}
+
                         //- Search
                         form.w-auto.py-1.ml-auto(style='max-width: 12rem')
-                            input.form-control.rounded-0(type='search' placeholder='Search' aria-label='Search')
+                            input.form-control.rounded-0(type='search' placeholder='Buscar' aria-label='Search')
+
             section
                 .text-center
                     .row.row-cols-4
@@ -44,7 +46,7 @@ block contenido
                                             h5.card-title.mb-2= producto.nombre
                                         a.text-reset(href='')
                                             p= producto.clase_producto.nombre
-                                        h6.price(style="color:black;") $#{producto.precio.toLocaleString('es-ES', {minimumFractionDigits: 1, maximumFractionDigits: 2})}
+                                        h6.price(style="color:black;") $#{producto.precio.toLocaleString('es-ES', {maximumFractionDigits: 1})}
 
                 .text-center
                     .row.row-cols-1.row-cols-md-2.row-cols-lg-4.g-4
@@ -57,11 +59,11 @@ block contenido
                                             .hover-overlay
                                                 .mask(style='background-color: rgba(251, 251, 251, 0.15);')
                                     .card-body
-                                        a.text-reset(href='')
+                                        a.text-reset(href=`/producto/${producto.id}`)
                                             h5.card-title.mb-2= producto.nombre
                                         a.text-reset(href='')
                                             p= producto.clase_producto.nombre
-                                        h6.price(style="color:black;") $#{producto.precio.toLocaleString('es-ES', {minimumFractionDigits: 1, maximumFractionDigits: 2})}
+                                        h6.price(style="color:black;") $#{producto.precio.toLocaleString('es-ES', {maximumFractionDigits: 1})}
 
                 .d-flex.justify-content-center.mt-4
                     .pagination

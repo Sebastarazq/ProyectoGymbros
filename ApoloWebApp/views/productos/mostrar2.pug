@@ -11,7 +11,7 @@ block contenido
                     h1.display-5.fw-bolder= producto.nombre
                     .fs-5.mb-5
                         span.text-decoration-line-through $
-                        span.text-decoration-line-through= producto.precio.toLocaleString('es-ES', { minimumFractionDigits: 2 })
+                        span.text-decoration-line-through= producto.precio.toLocaleString('es-ES', { maximumFractionDigits: 1 })
                     p.lead= producto.descripcion
                     .d-flex
                         button.btn.btn-outline-dark.flex-shrink-0(type='button')
@@ -32,7 +32,7 @@ block contenido
                                     //- Product name
                                     h5.fw-bolder= productoRelacionado.nombre
                                     //- Product price
-                                    | $#{productoRelacionado.precio.toLocaleString('es-ES', {minimumFractionDigits: 1, maximumFractionDigits: 2})}
+                                    | $#{productoRelacionado.precio.toLocaleString('es-ES', {maximumFractionDigits: 1})}
                             //- Product actions
                             .card-footer.p-4.pt-0.border-top-0.bg-transparent
                                 .text-center

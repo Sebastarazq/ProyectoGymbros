@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import usuarioRoutes from './routes/usuarioRoutes.js'
 import productosRoutes from './routes/productosRoutes.js'
 import appRoutes from './routes/appRoutes.js'
+import apiRoutes from './routes/apiRoutes.js'
 import db from './config/db.js';
 
 
@@ -42,6 +43,7 @@ app.use(express.static('public'))
 app.use('/', appRoutes)
 app.use('/auth', usuarioRoutes)
 app.use('/', productosRoutes)
+app.use('/', apiRoutes)
 
 
 
