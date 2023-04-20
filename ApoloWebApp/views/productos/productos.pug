@@ -11,21 +11,22 @@ block contenido
                         i.fas.fa-bars
                     #navbarSupportedContent2.collapse.navbar-collapse
                         ul.navbar-nav.me-auto.mb-2.mb-lg-0
-                            each claseProducto in productos.rows.slice(0, 5) 
+                            each claseProducto in primerasCincoClases
                                 li.nav-item
-                                    a.nav-link.text-white(href=`#${claseProducto.clase_producto.nombre}`) #{claseProducto.clase_producto.nombre}
+                                    a.nav-link.text-white(href=`#${claseProducto.nombre}`) #{claseProducto.nombre}
                             li.nav-item.dropdown
-                                a.nav-link.dropdown-toggle.text-white(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
-                                    span.caret
-                                ul.dropdown-menu.dropdown-menu-dark
-                                    //- Iteramos por todasLasClases para mostrar todas las clases de productos
-                                    each claseProducto in todasLasClases
-                                        li.dropdown-item
-                                            a(href=`#${claseProducto.nombre}`) #{claseProducto.nombre}
+                                    a.nav-link.dropdown-toggle.text-white(href='#' role='button' data-toggle='dropdown' aria-expanded='false')
+                                        span.caret
+                                    ul.dropdown-menu.dropdown-menu-dark
+                                        each claseProducto in todasLasClases
+                                                if !claseProducto.visible && !primerasCincoClases.includes(claseProducto.nombre)
+                                                    li.dropdown-item
+                                                        a(href=`#${claseProducto.nombre}`) #{claseProducto.nombre}
 
-                        //- Search
                         form.w-auto.py-1.ml-auto(style='max-width: 12rem')
                             input.form-control.rounded-0(type='search' placeholder='Buscar' aria-label='Search')
+
+
 
             section
                 .text-center

@@ -7,7 +7,6 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
-<<<<<<< HEAD
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/dropzone/dist/dropzone.js":
@@ -75,10 +74,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var drop
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/js/agregarImagen.js");
-=======
-/******/ 	"use strict";
-/******/ 	
->>>>>>> master
 /******/ 	
 /******/ })()
 ;

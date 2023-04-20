@@ -34,71 +34,75 @@ const inicio = async (req, res) => {
 }
 
 const todoproductos = async (req, res) => {
-    const token = req.cookies._token;
-    const usuarioAutenticado = token ? true : false;
-    let usuario;
-  
-    if (token) {
-      const idUsuario = jwt.verify(token, process.env.JWT_SECRET).id;
-      usuario = await Usuario.findByPk(idUsuario);
-    }
-  
-    const limit = 8; // número máximo de elementos a recuperar
-    const expresion = /^[1-9]+[0-9]*$/; // Expresión regular para aceptar solo números enteros positivos
-    const paginaActual = req.query.page;
-    let page = 1;
-  
-    if (paginaActual && expresion.test(paginaActual)) {
-      page = parseInt(paginaActual);
-    } else {
-      return res.redirect('/productos?page=1');
-    }
-  
-    const offset = (page - 1) * limit; // determina el punto de inicio para recuperar elementos
-    const productos = await Producto.findAndCountAll({
-      limit,
-      offset,
-      order: [['nombre', 'ASC']],
-      include: [
-        {
-          model: ClaseProducto,
-          as: 'clase_producto',
-          attributes: ['nombre'],
-          required: true
-        }
-      ]
-    });
-    const todasLasClases = await ClaseProducto.findAll({
-      attributes: ['nombre', 'id']
-    });
-      
-  
-    const pages = Math.ceil(productos.count / limit); // número total de páginas
-    const isFirstPage = page === 1;
-    const isLastPage = page === pages;
-  
-    const claseProductos = productos.rows
-      .filter((currentProduct, index, arr) => {
-        return currentProduct.clase_producto && arr.findIndex(product => product.clase_producto.id === currentProduct.clase_producto.id) === index;
-      })
-      .map(product => product.clase_producto.nombre);
-  
-    // Aquí renderizamos la vista 'productos/productos' con los datos necesarios
-    res.render('productos/productos', {
-      pagina: 'Productos',
-      usuario,
-      productos,
-      claseProductos: claseProductos.slice(0, 5), // Tomamos solo las primeras 5 clases de productos
-      todasLasClases: claseProductos.slice(5).concat(todasLasClases), // Concatenamos las demás clases de productos con todasLasClases
-      csrfToken: req.csrfToken(),
-      autenticado: usuarioAutenticado,
-      isFirstPage,
-      isLastPage,
-      currentPage: page,
-      pages,
-    });
-};  
-    
+  const token = req.cookies._token;
+  const usuarioAutenticado = token ? true : false;
+  let usuario;
+
+  if (token) {
+    const idUsuario = jwt.verify(token, process.env.JWT_SECRET).id;
+    usuario = await Usuario.findByPk(idUsuario);
+  }
+
+  const limit = 8; // número máximo de elementos a recuperar
+  const expresion = /^[1-9]+[0-9]*$/; // Expresión regular para aceptar solo números enteros positivos
+  const paginaActual = req.query.page;
+  let page = 1;
+
+  if (paginaActual && expresion.test(paginaActual)) {
+    page = parseInt(paginaActual);
+  } else {
+    return res.redirect('/productos?page=1');
+  }
+
+  const offset = (page - 1) * limit; // determina el punto de inicio para recuperar elementos
+  const productos = await Producto.findAndCountAll({
+    limit,
+    offset,
+    order: [['nombre', 'ASC']],
+    include: [
+      {
+        model: ClaseProducto,
+        as: 'clase_producto',
+        attributes: ['nombre'],
+        required: true
+      }
+    ]
+  });
+
+  // Aquí obtenemos todas las clases de productos
+  const todasLasClases = await ClaseProducto.findAll({attributes: ['nombre', 'id']});
+
+  // Aquí filtramos las clases de productos distintas
+  const clasesProductosDistintas = [...new Set(productos.rows.map(producto => producto.clase_producto.nombre))];
+
+  // Aquí creamos un array con las primeras 5 clases de productos
+  const primerasCincoClases = await ClaseProducto.findAll({
+  attributes: ['nombre'],
+  limit: 5,
+});
+
+
+
+  const pages = Math.ceil(productos.count / limit); // número total de páginas
+  const isFirstPage = page === 1;
+  const isLastPage = page === pages;
+
+  // Aquí renderizamos la vista 'productos/productos' con los datos necesarios
+  res.render('productos/productos', {
+    pagina: 'Productos',
+    usuario,
+    productos,
+    primerasCincoClases,
+    todasLasClases: todasLasClases.slice(5), // Desplegamos el menú con las demás clases a partir de la sexta
+    csrfToken: req.csrfToken(),
+    autenticado: usuarioAutenticado,
+    isFirstPage,
+    isLastPage,
+    currentPage: page,
+    pages,
+  });
+};
+
 const categoria = (req,res) => {
     
 }
