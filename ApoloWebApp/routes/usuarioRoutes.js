@@ -1,6 +1,6 @@
 import express from "express";
 import protegerRuta from "../middleware/protegerRuta.js";
-import { formularioLogin, autenticar, formularioRegistro, formularioOlvidePassword, registrar,
+import { formularioLogin, autenticar, cerrarSesion, formularioRegistro, formularioOlvidePassword, registrar,
 confirmar, resetPassword, comprobarToken, nuevoPassword, editarPerfil, guardarCambios } from '../controllers/usuarioController.js'
 
 const router = express.Router();
@@ -9,6 +9,8 @@ const router = express.Router();
 router.get('/login', formularioLogin);
 router.post('/login', autenticar);
 
+//Cerrar Sesion
+router.post('/cerrar-sesion', cerrarSesion)
 
 router.get('/registro', formularioRegistro)
 router.post('/registro', registrar)

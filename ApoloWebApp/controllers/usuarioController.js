@@ -68,6 +68,12 @@ const autenticar = async (req,res) => {
         // secure: true
     }).redirect('/')
 }
+
+const cerrarSesion = (req, res) =>{
+    
+    return res.clearCookie('_token').status(200).redirect('/auth/login')
+}
+
 const formularioRegistro= (req,res) => {
     
     res.render('auth/registro', {
@@ -372,6 +378,7 @@ const guardarCambios = async (req, res) => {
 export {
     formularioLogin,
     autenticar,
+    cerrarSesion,
     formularioRegistro,
     registrar,
     confirmar,
