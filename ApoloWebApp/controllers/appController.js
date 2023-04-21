@@ -33,6 +33,23 @@ const inicio = async (req, res) => {
 
 }
 
+const terminos = (req,res) =>{
+  res.render('tyc', {
+    pagina: 'Terminos y condiciones',
+    csrfToken: req.csrfToken(),
+
+})
+
+}
+const tratados = (req,res) =>{
+  res.render('tratados', {
+    pagina: 'Política de privacidad y Tratamiento de datos',
+    csrfToken: req.csrfToken(),
+
+})
+
+}
+
 const todoproductos = async (req, res) => {
   const token = req.cookies._token;
   const usuarioAutenticado = token ? true : false;
@@ -51,7 +68,7 @@ const todoproductos = async (req, res) => {
   if (paginaActual && expresion.test(paginaActual)) {
     page = parseInt(paginaActual);
   } else {
-    return res.redirect('/productos?page=1');
+    return res.redirect(`/productos?page=1`);
   }
 
   const offset = (page - 1) * limit; // determina el punto de inicio para recuperar elementos
@@ -63,7 +80,7 @@ const todoproductos = async (req, res) => {
       {
         model: ClaseProducto,
         as: 'clase_producto',
-        attributes: ['nombre'],
+        attributes: ['id','nombre'],
         required: true
       }
     ]
@@ -77,9 +94,9 @@ const todoproductos = async (req, res) => {
 
   // Aquí creamos un array con las primeras 5 clases de productos
   const primerasCincoClases = await ClaseProducto.findAll({
-  attributes: ['nombre'],
+  attributes: ['id','nombre'],
   limit: 5,
-});
+  });
 
 
 
@@ -103,9 +120,91 @@ const todoproductos = async (req, res) => {
   });
 };
 
-const categoria = (req,res) => {
-    
-}
+const categoria = async (req, res) => {
+
+  const token = req.cookies._token;
+  const usuarioAutenticado = token ? true : false;
+  let usuario;
+
+  if (token) {
+    const idUsuario = jwt.verify(token, process.env.JWT_SECRET).id;
+    usuario = await Usuario.findByPk(idUsuario);
+  }
+  const { id } = req.params;
+
+  // Comprobar que la categoría exista
+  const claseProducto = await ClaseProducto.findByPk(id);
+  if (!claseProducto) {
+    return res.redirect('/404');
+  }
+
+  // Obtener los productos de la clase de producto
+  const limit = 8; // número máximo de elementos a recuperar
+  const expresion = /^[1-9]+[0-9]*$/; // Expresión regular para aceptar solo números enteros positivos
+  const paginaActual = req.query.page;
+  let page = 1;
+
+  if (paginaActual && expresion.test(paginaActual)) {
+    page = parseInt(paginaActual);
+  } else {
+    return res.redirect(`/productos/categorias/${id}?page=1`);
+  }
+
+  const offset = (page - 1) * limit; // determina el punto de inicio para recuperar elementos
+
+  const productos = await Producto.findAndCountAll({
+    where: {
+      claseProductoId: id,
+    },
+    limit,
+    offset,
+    order: [['nombre', 'ASC']],
+    include: [
+      {
+        model: ClaseProducto,
+        as: 'clase_producto',
+        attributes: ['id', 'nombre'],
+        required: true,
+      },
+    ],
+  });
+
+  // Aquí obtenemos todas las clases de productos
+  const todasLasClases = await ClaseProducto.findAll({
+    attributes: ['nombre', 'id'],
+  });
+
+  // Aquí filtramos las clases de productos distintas
+  const clasesProductosDistintas = [
+    ...new Set(productos.rows.map((producto) => producto.clase_producto.nombre)),
+  ];
+
+  // Aquí creamos un array con las primeras 5 clases de productos
+  const primerasCincoClases = await ClaseProducto.findAll({
+    attributes: ['id', 'nombre'],
+    limit: 5,
+  });
+
+  const pages = Math.ceil(productos.count / limit); // número total de páginas
+  const isFirstPage = page === 1;
+  const isLastPage = page === pages;
+
+  // Aquí renderizamos la vista 'productos/productos' con los datos necesarios
+  res.render('productos/categorias', {
+    pagina: claseProducto.nombre,
+    usuario,
+    productos,
+    primerasCincoClases,
+    todasLasClases: todasLasClases.slice(5), // Desplegamos el menú con las demás clases a partir de la sexta
+    csrfToken: req.csrfToken(),
+    autenticado: usuarioAutenticado,
+    isFirstPage,
+    isLastPage,
+    currentPage: page,
+    pages,
+  });
+};
+
 const noEncontrado = async (req,res) => {
 
     const token = req.cookies._token;
@@ -121,6 +220,7 @@ const noEncontrado = async (req,res) => {
     res.render('auth/404',{
         pagina: 'No encontrada',
         usuario,
+        autenticado: usuarioAutenticado,
         csrfToken: req.csrfToken(),
         autenticado: usuarioAutenticado,
     })
@@ -130,6 +230,8 @@ const buscador = (req,res) => {
 }
 export {
     inicio,
+    terminos,
+    tratados,
     todoproductos,
     categoria,
     noEncontrado,

@@ -13,23 +13,21 @@ block contenido
                         ul.navbar-nav.me-auto.mb-2.mb-lg-0.d-flex.justify-content-center.flex-wrap
                             each claseProducto in primerasCincoClases
                                 li.nav-item
-                                    a.nav-link.text-white(href=`productos/categorias/${claseProducto.id}`) #{claseProducto.nombre}
+                                    a.nav-link.text-white(href=`/productos/categorias/${claseProducto.id}`) #{claseProducto.nombre}
                             li.nav-item.dropdown
                                     a.nav-link.dropdown-toggle.text-white(href='#' role='button' data-toggle='dropdown' aria-expanded='false')
                                         span.caret
                                     ul.dropdown-menu.dropdown-menu-dark
                                         each claseProducto in todasLasClases
-                                                if !claseProducto.visible && !primerasCincoClases.includes(claseProducto.nombre)
-                                                    li.dropdown-item
-                                                        a(href=`productos/categorias/${claseProducto.id}`) #{claseProducto.nombre}
+                                            if !claseProducto.visible && !primerasCincoClases.includes(claseProducto.nombre)
+                                                li.dropdown-item
+                                                    a(href=`/productos/categorias/${claseProducto.id}`) #{claseProducto.nombre}
 
                         form.w-auto(style='max-width: 20rem', action="/buscador", method="POST")
                             input.form-control.rounded-0(type='hidden', name='_csrf', value=csrfToken)
                             div.d-flex.align-items-center
                                 input.form-control(type='text', name='termino', placeholder='Buscar productos', aria-label='Buscar productos', class='mr-2')
                                 input.btn.btn-outline-secondary.btn-outline-light.btn-sm.font-weight-bold(type='submit', value='Buscar')
-
-
 
 
 
