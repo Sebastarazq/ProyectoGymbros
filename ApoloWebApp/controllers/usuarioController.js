@@ -83,19 +83,6 @@ const formularioRegistro= (req,res) => {
 }
 const registrar = async (req,res) =>{
 
-    //Validación del checkbox
-    if(!req.body.check){
-        return res.render('auth/registro', {
-            pagina: 'Crear cuenta',
-            csrfToken: req.csrfToken(),
-            errores: [{msg: 'Debes aceptar los términos y condiciones para continuar.'}],
-            usuario:{ 
-                nombre: req.body.nombre,
-                apellido: req.body.apellido,
-                email: req.body.email
-            }
-        })
-    }
     //Validacion
     await check('nombre').notEmpty().withMessage('El nombre es Obligatorio').run(req)
     await check('apellido').notEmpty().withMessage('El apellido es Obligatorio').run(req)
@@ -114,6 +101,20 @@ const registrar = async (req,res) =>{
             pagina: 'Crear cuenta',
             csrfToken: req.csrfToken(), //opcional para csrf
             errores: resultado.array(),
+            usuario:{ 
+                nombre: req.body.nombre,
+                apellido: req.body.apellido,
+                email: req.body.email
+            }
+        })
+    }
+    
+    //Validación del checkbox
+    if(!req.body.check){
+        return res.render('auth/registro', {
+            pagina: 'Crear cuenta',
+            csrfToken: req.csrfToken(),
+            errores: [{msg: 'Debes aceptar los términos y condiciones para continuar.'}],
             usuario:{ 
                 nombre: req.body.nombre,
                 apellido: req.body.apellido,

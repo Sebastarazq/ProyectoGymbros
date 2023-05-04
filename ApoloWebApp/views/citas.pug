@@ -1,0 +1,18 @@
+extends ./layout/app
+
+block contenido
+  section#schedule
+    .container(style='margin-top: 90px;')
+      h2(text-align='center' class='section-title') Citas disponibles
+      each cita in citasDisponibles
+        .card.mb-4
+          .card-header
+            h4.card-title #{cita.cita.tipoCita.nombre}
+          .card-body
+            p.card-text Fecha: #{new Date(cita.cita.fecha).toLocaleDateString('es-ES')} - Hora: #{new Date('1970-01-01T' + cita.cita.hora).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})}
+          .card-footer
+            form(action='/citas', method='POST')
+                input(type='hidden', name='citaId', value=cita.id)
+                input(type='hidden', name='_csrf', value=csrfToken)
+                button.btn.btn-primary(type='submit') Solicitar cita
+

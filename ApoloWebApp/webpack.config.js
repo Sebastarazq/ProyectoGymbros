@@ -3,7 +3,8 @@ import path from 'path'
 export default {
     mode: 'development',
     entry: {
-        agregarImagen: './src/js/agregarImagen.js'
+        agregarImagen: './src/js/agregarImagen.js',
+        CambiarEstado: './src/js/cambiarEstado.js'
     },
     output: {
         filename: '[name].js',

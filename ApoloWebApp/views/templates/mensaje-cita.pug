@@ -1,0 +1,11 @@
+extends ../layout/index3
+
+block contenido
+  .container
+    .row.justify-content-center.align-items-center(style='height: 70vh;')
+      .col-md-6.text-center
+        .alert.alert-success(role='alert')
+          h4.mb-3= pagina
+          p.mb-3 Cita asignada correctamente.
+          p.mb-3 Te hemos enviado un correo de la confirmacion de la cita!.
+          a.btn.btn-lg.btn-success.mx-2(href='/') Volver al Inicio

@@ -1,4 +1,4 @@
-extends ../layout/app
+extends ./layout/app
 
 block contenido
 
@@ -19,15 +19,17 @@ block contenido
                                         span.caret
                                     ul.dropdown-menu.dropdown-menu-dark
                                         each claseProducto in todasLasClases
-                                            if !claseProducto.visible && !primerasCincoClases.includes(claseProducto.nombre)
-                                                li.dropdown-item
-                                                    a(href=`/productos/categorias/${claseProducto.id}`) #{claseProducto.nombre}
+                                                if !claseProducto.visible && !primerasCincoClases.includes(claseProducto.nombre)
+                                                    li.dropdown-item
+                                                        a(href=`/productos/categorias/${claseProducto.id}`) #{claseProducto.nombre}
 
                         form.w-auto(style='max-width: 20rem', action="/productos/buscador", method="POST")
                             input.form-control.rounded-0(type='hidden', name='_csrf', value=csrfToken)
                             div.d-flex.align-items-center
-                                input.form-control(type='text', id="termino",, name='termino', placeholder='Buscar productos', aria-label='Buscar productos', class='mr-2')
+                                input.form-control(type='text', id="termino", name='termino', placeholder='Buscar productos', aria-label='Buscar productos', class='mr-2')
                                 input.btn.btn-outline-secondary.btn-outline-light.btn-sm.font-weight-bold(type='submit', value='Buscar')
+
+
 
 
 
@@ -69,23 +71,6 @@ block contenido
                                         a.text-reset(href=`productos/categorias/${producto.clase_producto.id}`)
                                             p= producto.clase_producto.nombre
                                         h6.price(style="color:black;") $#{producto.precio.toLocaleString('es-ES', {maximumFractionDigits: 1})}
-
-                .d-flex.justify-content-center.mt-4
-                    .pagination
-                        if !isFirstPage
-                            li.page-item
-                                a.page-link(href=`/productos?page=${currentPage - 1}`) Anterior
-                        each page in Array.from({ length: pages }, (_, i) => i + 1)
-                            if page === currentPage
-                                li.page-item.active
-                                    a.page-link(href=`/productos?page=${page}`)= page
-                            else
-                                li.page-item
-                                    a.page-link(href=`/productos?page=${page}`)= page
-                        if !isLastPage
-                            li.page-item
-                                a.page-link(href=`/productos?page=${currentPage + 1}`) Siguiente
-
 
 
 

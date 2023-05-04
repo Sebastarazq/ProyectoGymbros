@@ -23,10 +23,10 @@ block contenido
                                                     li.dropdown-item
                                                         a(href=`productos/categorias/${claseProducto.id}`) #{claseProducto.nombre}
 
-                        form.w-auto(style='max-width: 20rem', action="/buscador", method="POST")
+                        form.w-auto(style='max-width: 20rem', action="/productos/buscador", method="POST")
                             input.form-control.rounded-0(type='hidden', name='_csrf', value=csrfToken)
                             div.d-flex.align-items-center
-                                input.form-control(type='text', name='termino', placeholder='Buscar productos', aria-label='Buscar productos', class='mr-2')
+                                input.form-control(type='text', id="termino", name='termino', placeholder='Buscar productos', aria-label='Buscar productos', class='mr-2')
                                 input.btn.btn-outline-secondary.btn-outline-light.btn-sm.font-weight-bold(type='submit', value='Buscar')
 
 

@@ -12,14 +12,20 @@ block contenido
                     .fs-5.mb-5
                         span.text-decoration-line-through $
                         span.text-decoration-line-through= producto.precio.toLocaleString('es-ES', { maximumFractionDigits: 1 })
-                    p.lead= producto.descripcion
+                    p.lead
+                        each line in producto.descripcion.split(/[-.]\s+/)
+                            if line.includes('características')
+                                li= line.trim()
+                                br
+                            else if line.trim().length > 0
+                                li= line.trim()
                     .d-flex
                         button.btn.btn-outline-dark.flex-shrink-0(type='button')
                             i.bi-cart-fill.me-1
                             | Comprar
     section.py-5.bg-light
         .container.px-4.px-lg-5.mt-5
-            h2.fw-bolder.mb-4 Related products
+            h2.fw-bolder.mb-4 Productos recientes
             .row.gx-4.gx-lg-5.row-cols-2.row-cols-md-3.row-cols-xl-4.justify-content-center
                 each productoRelacionado in productosRelacionados
                     .col.mb-5

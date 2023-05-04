@@ -1,5 +1,5 @@
 import express from "express";
-import { inicio, terminos, tratados, todoproductos, categoria, noEncontrado, buscador } from '../controllers/appController.js'
+import { inicio, terminos, tratados, todoproductos, categoria, noEncontrado, buscador, mostrarBusqueda } from '../controllers/appController.js'
 
 const router = express.Router()
 
@@ -18,7 +18,8 @@ router.get('/productos/categorias/:id', categoria)
 router.get('/404', noEncontrado)
 
 //Buscador
-router.post('productos/buscador', buscador)
+router.get('/productos/buscador', mostrarBusqueda);
+router.post('/productos/buscador', buscador)
 
 //TYC
 router.get('/tyc',terminos)

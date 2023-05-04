@@ -5,7 +5,8 @@ header.bg-stone-950.p-4
                 span.font.normal Apolo
 
         nav(class="my-5 text-sm md:flex md:items-center md:gap-3 font-bold text-orange-500 hidden")
-            a(href="/admin-productos") Mis productos 
+            a(href="/admin-citas") Citas 
+            a(href="/admin-productos") Productos 
             a(href=`/auth/mi-perfil/${usuario.id}`) Mi perfil
 
             form(action="auth/cerrar-sesion" method="POST")

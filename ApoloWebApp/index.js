@@ -5,6 +5,7 @@ import usuarioRoutes from './routes/usuarioRoutes.js'
 import productosRoutes from './routes/productosRoutes.js'
 import appRoutes from './routes/appRoutes.js'
 import apiRoutes from './routes/apiRoutes.js'
+import citasRoutes from './routes/citasRoutes.js'
 import db from './config/db.js';
 
 
@@ -44,7 +45,13 @@ app.use('/', appRoutes)
 app.use('/auth', usuarioRoutes)
 app.use('/', productosRoutes)
 app.use('/', apiRoutes)
-
+app.use('/', citasRoutes)
+// Ruta de manejo de errores para rutas no encontradas
+// Ruta de manejo de errores para rutas no encontradas
+/* app.use((req, res) => {
+    res.redirect('/404');
+}); */
+  
 
 
 //Definir un puerto y arrancar el proyecto // Para el correo process.env.PORT

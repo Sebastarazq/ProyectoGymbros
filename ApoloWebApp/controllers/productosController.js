@@ -20,7 +20,7 @@ const admin = async (req,res) => {
 
         //Limites y Offset para el paginador
 
-        const limit = 6;
+        const limit = 10;
         const offset = ((paginaActual*limit) - limit)
 
         const { id } = req.usuario
@@ -214,9 +214,9 @@ const editar = async (req,res) => {
     }
 
     //Consultar Modelo de Clase de producto
-    const [claseProductos]= await Promise.all([
+    const [claseProductos] = await Promise.all([
         ClaseProducto.findAll()
-    ])
+    ]);      
 
     res.render ('productos/editar' ,{
         pagina: `Editar Producto: ${producto.nombre}`,
@@ -312,6 +312,37 @@ const eliminar = async (req, res) =>{
     res.redirect('/admin-productos')
 }
 
+
+//Modifica el estado de la propiedad
+const cambiarEstado = async (req, res) => {
+
+    const { id } = req.params
+    //Validar que la propiedad exista
+    const producto = await Producto.findByPk(id)
+
+    if(!producto){
+        return res.redirect('/admin-productos')
+    }
+
+    //Revisar que quein visite la URL, es quien creo la propiedad
+    if (producto.usuarioId.toString() !== req.usuario.id.toString()) {
+        return res.redirect('/admin-productos')
+    }
+    //Actualizar
+    producto.publicado = !producto.publicado
+    await producto.save()
+
+    res.json({
+        resultado: true
+    })
+    
+    /* if(propiedad.publicado){
+        propiedad.publicado = 0
+    }else {
+        propiedad.publicado = 1
+    } */
+}
+
 //Muestra un producto
 
 const mostrarProducto = async (req, res) => {
@@ -373,5 +404,6 @@ export {
     editar,
     guardarCambios,
     eliminar,
+    cambiarEstado,
     mostrarProducto
 }

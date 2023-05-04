@@ -9,16 +9,16 @@ header
           li.nav-item
             a.nav-link.smoothScroll(href='/') Home
           li.nav-item
-            a.nav-link.smoothScroll(href='localhost:4000/#about') Sobre nosotros
+            a.nav-link.smoothScroll(href='#about') Sobre nosotros
           li.nav-item
-            a.nav-link.smoothScroll(href='localhost:4000#class') Clases
+            a.nav-link.smoothScroll(href='#class') Clases
           li.nav-item
-            a.nav-link.smoothScroll(href='localhost:4000#schedule') Citas
+            a.nav-link.smoothScroll(href='#schedule') Citas
           li.nav-item
             a.nav-link.smoothScroll(href='/productos') Productos 
           li.nav-item
             a.nav-link.smoothScroll(href=`/auth/mi-perfil/${usuario.id}`) - Mi perfil -
           li.nav-item
-            form(action='/logout', method='POST')
+            form(action='/auth/cerrar-sesion', method='POST')
               input(type="hidden" name="_csrf" value= csrfToken)
               button.nav-link.smoothScroll.btn.btn-link.nav-link(type='submit') Cerrar sesión
